@@ -1,42 +1,53 @@
 import json
 import requests
 import labelconfig
-import pandas as pd
-from nltk.corpus import stopwords
-
-global ner_texts
-global ner_labels
-ner_texts = []
-ner_labels = []
 
 # stanford api
-url = 'http://0.0.0.0:9000/?properties=%7B%22annotators%22%3A%22tokenize%2Cssplit%2Cpos%2Cner%22%2C%22outputFormat%22%3A%22json%22%7D'
-headers = {"Content-Type": "application/json"}
+# url = 'http://0.0.0.0:9000/?properties=%7B%22annotators%22%3A%22tokenize%2Cssplit%2Cpos%2Cner%22%2C%22outputFormat%22%3A%22json%22%7D'
+# headers = {"Content-Type": "application/json"}
 LABELS = labelconfig.label_config["LABELS"]
 
-def normalize_entity():
-    pass
+def normalize_entity(text):
+    url = "http://corenlp.run/?properties=%7B%22annotators%22%3A%20%22tokenize%2Cssplit%2Cpos%2Cner%2Cdepparse%2Copenie%22%2C%20%22date%22%3A%20%222020-12-21T11%3A18%3A47%22%7D&pipelineLanguage=en"
+    myobj = {'text': text}
+    
+    try:
+        output = requests.post(url, data = myobj)
+        sentences = output.json()["sentences"]
+        finalOutput = []
+        for sentence in sentences:
+            for entity in sentence["entitymentions"]:
+                if 'normalizedNER' in entity:
+                    outputStructure = {
+                        "start": entity["characterOffsetBegin"] - 5,
+                        "end": entity["characterOffsetEnd"] - 5,
+                        "entity": entity["text"],
+                        "type": entity["ner"],
+                        "normalizedNER": "-".join(entity["normalizedNER"].split("T")[0].split("-")[::-1])
+                    }
+                else:
+                    outputStructure = {
+                        "start": entity["characterOffsetBegin"] - 5,
+                        "end": entity["characterOffsetEnd"] - 5,
+                        "entity": entity["text"],
+                        "type": entity["ner"],
+                        "normalizedNER": ""
+                    }
+                finalOutput.append(outputStructure)
+        
+        for i, item in enumerate(finalOutput):
+            for label in LABELS:
+                if item["type"] in label["name"]:
+                    finalOutput[i]["type"] = label["key"]
+        
+        return json.dumps(finalOutput)
+    except requests.exceptions.HTTPError as errh:
+        return "An Http Error occurred:" + repr(errh)
+    except requests.exceptions.ConnectionError as errc:
+        return "An Error Connecting to the API occurred:" + repr(errc)
+    except requests.exceptions.Timeout as errt:
+        return "A Timeout Error occurred:" + repr(errt)
+    except requests.exceptions.RequestException as err:
+        return "An Unknown Error occurred" + repr(err)
 
-# generate POS tags and entities using stanford corenlp
-def stanford_pos_tags(val):
-    val = val.encode("utf-8").decode("ascii", "ignore")
-    tokens = requests.post(url = url, headers = headers, data = val).content
-    tokens = tokens.decode('utf8')
-    tokens = json.loads(tokens)
-    #print(tokens)
-    temp_data = []
-
-    for index in tokens['sentences']:
-        tokens, tags = [], []
-        for token in index['tokens']:
-            tokens.append(token['originalText'])
-            tags.append(token['pos'])
-        temp_data.append([' '.join(tokens), ' '.join(tags)])
-        for token in index['entitymentions']:
-            #print(token['text'], token['ner'])
-            if token['ner'] in ['PERSON', 'MONEY', 'DATE', 'TIME', 'LOCATION', 'ORGANIZATION', 'EMAIL', 'URL', 'CITY', 'STATE_OR_PROVINCE', 'COUNTRY', 'NATIONALITY', 'RELIGION', 'CAUSE_OF_DEATH', 'PERCENT', 'TITLE', 'CRIMINAL_CHARGE', 'IDEOLOGY', 'DURATION']:
-                if token['text'].lower() not in stopwords.words('english') and token['text'] not in modifiers:
-                    ner_texts.append(token['text'])
-                    ner_labels.append((token['text'], token['ner']))
-    #print(ner_texts)
-    return(pd.DataFrame(temp_data, columns=['Sentence', 'Tags']))
+# print(normalize_entity('my job at California will be done by next monday. I will buy mercedez car next year april. I will go to London by 20 july next year'))
