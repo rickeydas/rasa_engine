@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "rasa-pubsub",
+  "private_key_id": "99cc440554feeca9bb148bfc006b7012ecd93e88",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC7zpBxv9vOuzYd\nufD3nWDtnxelK2JX0DNy4qwE/dIz527raTP3ZIQ2GHzwUyM8SI3jXwO+Dxv3pxfV\nD166akog3NgOTtOzubLw/6ltRsBjj3ajwww3HE+SHVIx6VJn6427wc03MjJWA+K3\n3dnrW/48TvtLVLamjyn325BJIfegEREMDKdCE+IxW+P0/1yYHmg5nFyZwsVS2o13\nMFulz8AWwZflU3mofnT1z6NkmEF0wv20SnbK2vOIfCKcAjIXZ+a9CaUUP+8jE6Ei\ncxGdlSTObN45IO17Wcrb51XKBU3f6BwLTy7Jy95PAfdycPT7fYI8QasIAEV/g2H6\n53UQQCbDAgMBAAECggEAIz9lhLPJgUdJpNKdExwKcQ6G1Y0K7Ag7X7iDKHyq0usA\nulYIVsoatjxqVoCEAHBtkNroTOdxDE3j/yzfToVcXEaWljjdKsITf3+8QLIisYzf\na2TUChPaK0YtgwiTWsWu2CpLZayaHeKkznVozO97C76XE1BW53O/ILGoptElNHks\nPV1ZU/xju2nPuxHyD34zu26LDv+jvvKPzt32ol3bxXyyX9egRdsfY3P62piZg+cU\n7Z6G4TJXrA0xMDjg3dLWZx2uVLM61eN6oxnHo/e9fieP9jSlHEcBx9SHcCyXqSa2\nRF6b2sP30GUyIqZvbIK9hJ2bN3BQdSGOfDXZephuwQKBgQD/w5LC91eKxc4Fy8Ws\n6dDsDuvJgp933WJVlPuQpCEc1lcQ5lEeNpzCXEaLrRARIWj5n23Z3uUWxI1Dad0P\nXlvz3/T0AfrBu3u393K595doyJ36M3PCSYBIeh7nuydGzZVqcBzYxu+f4/rvxDpr\n6jeBs8QVrEFSUsD4gdf9N9FxiwKBgQC7+u94iTjkdAOFUBGzpaOVcP2H5wuaFIQm\nNFbP1AzAUfj5dNo6MkonLqcujr/3HvlCgYRa/era4k1WTNNxVvtgd0MIb7rSeFy1\nKj5O3t18S6J5LEryEIvgJeBr9k6ryoKot6aNGG0hxZWr21LhlhlA5oAVoMWHaqgy\nEtHo5HbWqQKBgQC9QounmkA9gIIj59YvThY7mA8C3pYCrN/HVKeTMOEP5cwnxUbh\nhKgbaw0I7tek1YRIs6EmR7peTrP53qymYrzIikFJDu3vzjyOtZ0/3+c6srm0G77d\nVmaHO1cDQ4qc6iRWzv+JqixHtPxL0HkqwfaxE8VWBFGSCYqiWfLqfhOOYQKBgQCc\nVY1jSXwvQuzKqlSOe2sYlefEZrqXYgilXVH1df1E1OejTzNOwxQ4kewoJEAyXWgf\nj2dr5VC0yRBYfXw7/oMBLy5ojcNp1wADCybWoTLCdISjEdsihfBOcjG6mBXFeZ5A\ngrvZDD92nsRjMPw08IgAGbLcSeD9Rg6r1ksMzTSoQQKBgQC6W6E7m9ObMT6dPT87\n+h2hQ43ZjLFBgxHw4VOagcvHhCqwepTVSz6ACwMAQ0ru6D3Gg0zfD9NWRgRS9jPd\nQz1iMOP00wUZFPOsvDFx1n10jly2S/vT7Ky7FcZBNOBB/IwgbPXbjBlBy5mY7XC5\nNyD5a+7br3Sxmc5d9ZzzABK4FQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "rasa-pubsub@rasa-pubsub.iam.gserviceaccount.com",
+  "client_id": "116498137146928621695",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/rasa-pubsub%40rasa-pubsub.iam.gserviceaccount.com"
+}
